@@ -27,7 +27,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const API = "http://localhost:5000/api";
+const API = "https://moving-service-app.onrender.com/api";
 const COLORS = ["#ff7a1a", "#c91414", "#ffcc00"];
 
 const markerIcon = new L.Icon({
@@ -187,16 +187,12 @@ const [resetForm, setResetForm] = useState({
     }
 
     const originResponse = await fetch(
-      `http://localhost:5000/api/geocode?address=${encodeURIComponent(
-        jobForm.origin
-      )}`
-    );
+  `${API}/geocode?address=${encodeURIComponent(jobForm.origin)}`
+);
 
-    const destinationResponse = await fetch(
-      `http://localhost:5000/api/geocode?address=${encodeURIComponent(
-        jobForm.destination
-      )}`
-    );
+const destinationResponse = await fetch(
+  `${API}/geocode?address=${encodeURIComponent(jobForm.destination)}`
+);
 
     if (!originResponse.ok || !destinationResponse.ok) {
       throw new Error("Could not find address");
